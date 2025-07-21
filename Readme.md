@@ -14,7 +14,7 @@ To develop a robust ML pipeline to:
 
 📦 Deploy the model with Flask + PostgreSQL
 
-🗃️ Dataset Summary
+## 🗃️ Dataset Summary
 Feature	Description
 Converted	Target variable (0 or 1)
 Do Not Email, Do Not Call	Binary features (Yes/No)
@@ -22,7 +22,7 @@ TotalVisits, Time on Website	Numerical engagement metrics
 Source, Specialization	Categorical attributes
 Asymmetrique_* features	Ordinal behavioral scoring
 
-🏗️ Architecture Overview
+## 🏗️ Architecture Overview
 java
 Copy
 Edit
@@ -33,7 +33,7 @@ CSV/DB → Preprocessing → Model Training → MLflow Logging/Registry
      Evaluation (ROC, F1)       Predictions → PostgreSQL → Results
          ↓                                     ↓
     SHAP Explainability             Evidently Drift Monitoring
-🧰 Libraries Used
+## 🧰 Libraries Used
 txt
 Copy
 Edit
@@ -50,12 +50,12 @@ Copy
 Edit
 conda create -n leadenv python=3.10.11
 conda activate leadenv
-📦 2. Install Required Packages
+## 2. Install Required Packages
 bash
 Copy
 Edit
 pip install -r requirements.txt
-📁 3. Setup .env (for PostgreSQL)
+## 3. Setup .env (for PostgreSQL)
 ini
 Copy
 Edit
@@ -64,8 +64,8 @@ DB_PASSWORD=vinay
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=mydb1
-🧪 Model Training Pipeline
-📂 Data Preparation
+##  🧪 Model Training Pipeline
+## 📂 Data Preparation
 python
 Copy
 Edit
@@ -88,7 +88,7 @@ Copy
 Edit
 smote = SMOTE(random_state=42)
 X_balanced, y_balanced = smote.fit_resample(X_preprocessed, y)
-🔁 MLflow Integration
+##  MLflow Integration
 Automatically tracks metrics, parameters, SHAP plots
 
 Registers best model (based on ROC-AUC)
@@ -103,7 +103,7 @@ Edit
 mlflow.log_metric("roc_auc", 0.91)
 mlflow.sklearn.log_model(best_model, "model")
 🤖 Model Deployment (Flask)
-📁 Files
+## Files
 app.py: Flask server with /predict
 
 upload.html: Upload CSV
@@ -112,7 +112,7 @@ results.html: Display predictions in tabular format
 
 Saves results to PostgreSQL (lead_scoring table)
 
-⚙️ Auto-load Model from MLflow
+## Auto-load Model from MLflow
 python
 Copy
 Edit
@@ -125,7 +125,7 @@ def get_latest_production_model_name(stage="Production"):
 model_name = get_latest_production_model_name()
 model_uri = f"models:/{model_name}/Production"
 pipeline = mlflow.pyfunc.load_model(model_uri)
-📊 Drift Monitoring (Evidently)
+## Drift Monitoring (Evidently)
 Prepares train, val, and test sets
 
 Applies preprocessing
@@ -144,10 +144,10 @@ mlflow.log_artifact("drift_report.html")
 bash
 Copy
 Edit
-# Run Flask server
+## Run Flask server
 python app.py
 
-# Go to: http://localhost:5001
+## Go to: http://localhost:5001
  Upload CSV file with required columns
  Get predictions + PostgreSQL save
  📄 File Checklist
@@ -159,7 +159,7 @@ requirements.txt	Package list
 .env	Environment variables
 preprocess.pkl	Saved preprocessing pipeline
 
-✅ Best Practices Followed
+## ✅ Best Practices Followed
 🧼 Clean column names and handle missing values
 
 💡 Explainable ML with SHAP
