@@ -148,5 +148,26 @@ Edit
 python app.py
 
 # Go to: http://localhost:5001
-# Upload CSV file with required columns
-# Get predictions + PostgreSQL save
+ Upload CSV file with required columns
+ Get predictions + PostgreSQL save
+ 📄 File Checklist
+File	Purpose
+app.py	Flask prediction server
+upload.html	CSV upload form
+results.html	Prediction table output
+requirements.txt	Package list
+.env	Environment variables
+preprocess.pkl	Saved preprocessing pipeline
+
+✅ Best Practices Followed
+🧼 Clean column names and handle missing values
+
+💡 Explainable ML with SHAP
+
+⚖️ SMOTE to handle class imbalance
+
+📦 MLflow for end-to-end experiment tracking
+
+🧠 Drift tracking with Evidently
+
+🚀 Fully automated production deployment via Flask
